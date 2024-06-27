@@ -1,6 +1,7 @@
 {
   "name": "ims",
   "version": "1.0.0",
+  "type":"module",
   "description": "inventory management system",
   "main": "server.js",
   "scripts": {
@@ -9,8 +10,13 @@
   "author": "jeevanandh",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.4"
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.4.4",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
   }
 }
