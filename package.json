@@ -1,7 +1,6 @@
 {
   "name": "ims",
   "version": "1.0.0",
-  "type":"module",
   "description": "inventory management system",
   "main": "server.js",
   "scripts": {
