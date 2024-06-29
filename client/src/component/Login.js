@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../actions/authActions';
 
@@ -19,7 +19,7 @@ const Login = () => {
   
   return (
     auth.isAuthenticated
-      ? <Redirect to={{ pathname: '/dashboard' }} />
+      ? <Navigate to={{ pathname: '/dashboard' }} />
       : <div className='container mt-5' style={{ maxWidth: '400px' }}>
         <h2 className='text-success'>Sign In</h2>
         <hr />

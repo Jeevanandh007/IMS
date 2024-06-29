@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-
+const router = express.Router();
 const User = require('../models/user.model');
 
 
@@ -49,7 +49,7 @@ router.post('/logout', (req, res) => {
   });
 
   // User registration
-  router.post('/registe', (req, res) => {
+  router.post('/register', (req, res) => {
     User.findOne({ username: req.body.username }, async (err, existingUser) => {
       if (existingUser) {
         res.status(203).json(`Sorry, ${req.body.username} already exists`);
