@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
-import Home from './component/Home'
+import Home from ''
 
 const App = () => {
   return (
