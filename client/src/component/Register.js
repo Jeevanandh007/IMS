@@ -24,7 +24,15 @@ const Register = () => {
         <h2 className='text-success'>Sign Up</h2>
         <hr />
         <form onSubmit={handleSubmit}></form>
-
+        <div className="form-group"></div>
+        <label htmlFor="username" className='text-primary'>Username</label>
+            <input
+            type="text"
+            name="username"
+            className="form-control border-info"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
 
 
     export default Register;
