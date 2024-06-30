@@ -34,7 +34,7 @@ const Register = () => {
             onChange={e => setUsername(e.target.value)}
           />
           </div>
-    
-  );
-
+    );
+};
+ 
 export default Register;
