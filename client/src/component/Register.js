@@ -33,6 +33,6 @@ const Register = () => {
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-
-
-    export default Register;
+          </div>
+          
+export default Register;
