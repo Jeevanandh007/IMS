@@ -14,7 +14,7 @@ const Profile = ({ makeFirstLetterCapital }) => {
           <>
             <h4 className='text-success'>Welcome, {makeFirstLetterCapital(user.username)}!</h4>
             <p>Your registered email: <span className='font-weight-bold'>{user.email}</span></p>
-            <p className='text-muted'>Member since: <span className='font-weight-bold'>January 2021</span></p>
+            <p className='text-muted'>Member since: <span className='font-weight-bold'>2024</span></p>
             <p className='text-muted'>Account type: <span className='font-weight-bold'>Premium</span></p>
           </>
         ) : (
