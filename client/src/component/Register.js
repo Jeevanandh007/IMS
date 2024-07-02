@@ -48,8 +48,18 @@ const Register = () => {
     value={email}
     onChange={e => setEmail(e.target.value)}
   />
-
   </div>
+
+<div className="form-group">
+<label htmlFor="password" className='text-primary'>Password</label>
+    <input
+    type="password"
+    name="password"
+    className="form-control border-info"
+    value={password}
+    onChange={e => setPassword(e.target.value)}
+  />
+</div>
 
   <div className="button-container d-flex justify-content-between align-items-center mt-3">
   <button type="submit" className="btn btn-primary">Register</button>
