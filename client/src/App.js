@@ -7,6 +7,8 @@ import store from './store'
 
 import Home from './component/Home'
 import Login from './component/Login'
+import Register from  './component/Register';
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -14,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/Register' element={<Register/>} />
         </Routes>
         </Router>
     </Provider>
