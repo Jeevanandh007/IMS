@@ -12,8 +12,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
       <Routes>
-        <Route path='/' exact component={Home} />
-        <Route path='/login' component={Login} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>} />
         </Routes>
         </Router>
     </Provider>
