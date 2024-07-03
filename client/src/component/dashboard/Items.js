@@ -12,6 +12,9 @@ export const Items = () => {
 
     
   return (
-    
+    <div>
+     
+      <Table />
+    </div>
   )
 }
