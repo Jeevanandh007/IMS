@@ -8,7 +8,7 @@ import store from './store'
 import Home from './component/Home'
 import Login from './component/Login'
 import Register from  './component/Register'
-import Dashboard from '/component/dashboard/Dashboard'
+import Dashboard from './component/dashboard/Dashboard'
 
 const App = () => {
   return (

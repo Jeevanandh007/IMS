@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../actions/authActions'
 
 import Settings  from './user/Settings'
-
+import { Items } from './Items'
 
 const Dashboard = () => {
     const auth = useSelector(state => state.auth)
@@ -28,17 +28,14 @@ const Dashboard = () => {
             <li className='sidebar__item'><Link className='sidebar__link' to='/dashboard'>
               {/* <BoxImg fill="#eee" /> */}
               <span>Items</span>
-            </Link></li>
-            <li className='sidebar__item'><Link className='sidebar__link' to='/dashboard/profile'>
-              <UserImg fill="#eee" />
-              <span>Profile</span>
+           
             </Link></li>
             <li className='sidebar__item'><Link className='sidebar__link' to='/dashboard/settings'>
-              <CogImg fill="#eee" />
+             
               <span>Settings</span>
             </Link></li>
             <li className='sidebar__item'><button className='sidebar__logout' onClick={() => dispatch(logout())}>
-              <LogOutImg fill="#eee" />
+              
               <span>Log out</span>
             </button></li>
           </ul>
@@ -47,20 +44,17 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="main">
-          <Switch>
-            <Route path='/dashboard/profile' render={() => (
-              <Profile
-                makeFirstLetterCapital={makeFirstLetterCapital} />
-            )} />
+          <Routes>
+           
             <Route path='/dashboard/settings' render={() => (
               <Settings />
             )} />
             <Route path='/dashboard' render={() => <Items />} />
-          </Switch>
+          </Routes>
         </div>
 
             </div>
     </Router>
-  ) : (<Redirect to={{ pathname: '/' }} />)
+  ) : (<Navigate to={{ pathname: '/' }} />)
 }
 export default Dashboard
