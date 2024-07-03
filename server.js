@@ -49,7 +49,12 @@ app.use('/api/products', checkAuthentication, productRouter);
 app.use('/api/users', userRouter);
 
 //auth middleware
-
+function checkAuthentication(req, res, next)
+{
+  if (req.isAuthenticated())
+    return next();
+  
+}
 
 //deploy
 if(process.env.NODE_ENV === 'production') {
