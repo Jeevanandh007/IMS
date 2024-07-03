@@ -7,7 +7,8 @@ import store from './store'
 
 import Home from './component/Home'
 import Login from './component/Login'
-import Register from  './component/Register';
+import Register from  './component/Register'
+import Dashboard from '/component/dashboard/Dashboard'
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
-        <Route path='/Register' element={<Register/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
         </Routes>
         </Router>
     </Provider>

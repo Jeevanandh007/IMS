@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <div className='footer__copy-text'>
-        &copy; 2024 IMS App by Jeevanandh
+        &copy; 2024 Inventory Management System Jeevanandh
       </div>
     </footer>
   );
