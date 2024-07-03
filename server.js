@@ -21,7 +21,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
   secret: keys.sessionSecret,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 2, // 2 hours
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
