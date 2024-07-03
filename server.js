@@ -42,10 +42,23 @@ mongoose.connect(keys.mongoURL, {
   );
 
 //api
+const productRouter =require('./routes/product')
 const userRouter =require('./routes/user')
 
-
+app.use('/api/products', checkAuthentication, productRouter);
 app.use('/api/users', userRouter);
+
+//auth middleware
+
+
+//deploy
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.statica('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(pathe.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 
 // start the Express server
 app.listen(PORT, () => {
