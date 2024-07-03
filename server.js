@@ -14,6 +14,17 @@ if (process.env.NODE_ENV !== 'development') {
   const app = express();
 
  //middleware
+app.use(cors({origin: 'http://localhost:3000',
+Credentials: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: keys.sessionSecret,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //database
 mongoose.connect(keys.mongoURL, {
@@ -28,8 +39,10 @@ mongoose.connect(keys.mongoURL, {
   );
 
 //api
+const userRouter =require('./routes/user')
 
 
+app.use('/api/users', userRouter);
 
 // start the Express server
 app.listen(PORT, () => {
