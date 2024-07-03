@@ -21,18 +21,28 @@ function initialize(passport) {
           catch(err){
             return done(err);
           }
-        }
-};
+        };
+
 
 
 //to update
 passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, authenticateUser));
 
-passport.serializeUser
+passport.serializeUser((user, done) => {
+    done(null, user._id);
+  });
 
 
 
-passpoert.deserializeUser
+passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
+  });
+}
 
 
 module.exports =initialize;
