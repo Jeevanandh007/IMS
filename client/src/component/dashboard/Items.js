@@ -13,7 +13,13 @@ export const Items = () => {
     
   return (
     <div>
-     
+      {
+        product.isEditing
+        
+          ? <EditProduct />
+
+          : <AddProduct />
+      }
       <Table />
     </div>
   )
