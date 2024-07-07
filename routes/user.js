@@ -43,25 +43,35 @@ router.post("/register", async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username });
 
   if (existingUser) {
-    res.status(400).json(`Sorry, ${req.body.username} already exists`);
-  } else {
-    try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    res.status(400).json(`Sorry, ${req.body.username} already choosen`);
 
-      const newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-      });
+    return;
+  }
 
-      newUser
-        .save()
-        .then((user) => res.status(203).json(user))
-        .catch((error) => res.status(400).json(`Save Error: ${error}`));
-    } catch (error) {
-      res.status(500).json(`Catch Error: ${error}`);
-    }
+  const existingEmail = await User.findOne({ email: req.body.email });
+
+  if (existingEmail) {
+    res.status(400).json(`Sorry, ${req.body.email} is an existing user`);
+
+    return;
+  }
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+    });
+
+    newUser
+      .save()
+      .then((user) => res.status(203).json(user))
+      .catch((error) => res.status(400).json(`Save Error: ${error}`));
+  } catch (error) {
+    res.status(500).json(`Catch Error: ${error}`);
   }
 });
 
