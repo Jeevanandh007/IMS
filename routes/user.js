@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username });
 
   if (existingUser) {
-    res.status(203).json(`Sorry, ${req.body.username} already exists`);
+    res.status(400).json(`Sorry, ${req.body.username} already exists`);
   } else {
     try {
       const salt = await bcrypt.genSalt(10);
@@ -57,7 +57,7 @@ router.post("/register", async (req, res) => {
 
       newUser
         .save()
-        .then((user) => res.json(user))
+        .then((user) => res.status(203).json(user))
         .catch((error) => res.status(400).json(`Save Error: ${error}`));
     } catch (error) {
       res.status(500).json(`Catch Error: ${error}`);
