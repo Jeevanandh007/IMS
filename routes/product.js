@@ -31,6 +31,7 @@ router.post("/add", (req, res) => {
     .then((product) => res.json(product))
     .catch((error) => res.status(400).json(`Error: ${error}`));
 });
+
 // Get a product by its ID
 router.get("/:id", checkAuthentication, (req, res) => {
   Product.findById(req.params.id)
@@ -42,8 +43,9 @@ router.get("/:id", checkAuthentication, (req, res) => {
     })
     .catch((error) => res.status(400).json(`Error: ${error}`));
 });
+
 // Update a product by its ID
-router.post("/update/:id", checkAuthentication, (req, res) => {
+router.put("/update/:id", checkAuthentication, (req, res) => {
   Product.findById(req.params.id)
     .then((product) => {
       if (product.userId.toString() !== req.user._id.toString()) {
