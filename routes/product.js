@@ -31,5 +31,16 @@ router.post("/add", (req, res) => {
     .then((product) => res.json(product))
     .catch((error) => res.status(400).json(`Error: ${error}`));
 });
+// Get a product by its ID
+router.get("/:id", checkAuthentication, (req, res) => {
+  Product.findById(req.params.id)
+    .then((product) => {
+      if (product.userId.toString() !== req.user._id.toString()) {
+        return res.status(401).json("User NOT Authorized!");
+      }
+      res.json(product);
+    })
+    .catch((error) => res.status(400).json(`Error: ${error}`));
+});
 
 module.exports = router;
