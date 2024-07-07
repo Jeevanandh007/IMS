@@ -42,5 +42,31 @@ router.get("/:id", checkAuthentication, (req, res) => {
     })
     .catch((error) => res.status(400).json(`Error: ${error}`));
 });
+// Update a product by its ID
+router.post("/update/:id", checkAuthentication, (req, res) => {
+  Product.findById(req.params.id)
+    .then((product) => {
+      if (product.userId.toString() !== req.user._id.toString()) {
+        return res.status(401).json("User NOT Authorized!");
+      }
+
+      const { name, qty, um, price, weight, description } = req.body;
+
+      product.name = name;
+      product.qty = Number(qty);
+      product.um = um;
+      product.price = Number(price);
+      product.weight = Number(weight);
+      product.description = description;
+      product.date = new Date();
+
+      product
+        .save()
+        .then((updatedProduct) => res.json(updatedProduct))
+        .catch((error) => res.status(400).json(`Error: ${error}`));
+    })
+    .catch((error) => res.status(400).json(`Error: ${error}`));
+});
+
 
 module.exports = router;
