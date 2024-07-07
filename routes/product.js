@@ -68,5 +68,11 @@ router.post("/update/:id", checkAuthentication, (req, res) => {
     .catch((error) => res.status(400).json(`Error: ${error}`));
 });
 
+// Delete a product by its ID
+router.delete("/:id", checkAuthentication, (req, res) => {
+  Product.findOneAndDelete({ _id: req.params.id, userId: req.user._id })
+    .then((product) => res.json(product._id))
+    .catch((error) => res.status(400).json(`Error: ${error}`));
+});
 
 module.exports = router;
