@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateProduct, cancelEdit } from '../../actions/productActions';
-
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateProduct, cancelEdit } from "../../actions/productActions";
 
 const EditProduct = () => {
-    const productBeingEdited = useSelector(state => state.product.productBeingEdited);
-    const [product, setProduct] = useState(productBeingEdited);
-  
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      setProduct(productBeingEdited);
-    }, [productBeingEdited]);
-  
-    const handleChange = e => {
-      setProduct({
-        ...product,
-        [e.target.name]: e.target.value
-      });
-    };
-  
-    const handleSubmit = e => {
-      e.preventDefault();
-      dispatch(updateProduct(product));
-      dispatch(cancelEdit());
-    };
-  
-    
+  const productBeingEdited = useSelector(
+    (state) => state.product.productBeingEdited
+  );
+  const [product, setProduct] = useState(productBeingEdited);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setProduct(productBeingEdited);
+  }, [productBeingEdited]);
+
+  const handleChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProduct(product));
+    dispatch(cancelEdit());
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="text-warning mb-4">Update Product Details</h2>
-      <form onSubmit={handleSubmit} className="border p-4 bg-light shadow-sm rounded">
+      <form
+        onSubmit={handleSubmit}
+        className="border p-4 bg-light shadow-sm rounded"
+      >
         <div className="form-row">
           <div className="form-group col-md-7">
             <label className="text-secondary">Product Name</label>
@@ -102,7 +105,9 @@ const EditProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-warning btn-block">Save Changes</button>
+        <button type="submit" className="btn btn-warning btn-block">
+          Save Changes
+        </button>
         <button
           type="button"
           className="btn btn-outline-secondary btn-block mt-2"
