@@ -1,5 +1,5 @@
 module.exports = {
   mongoURL:
-    "mongodb+srv://jeevanandh:%3DUpC%40%3B!33E2l@ims.tq2gleb.mongodb.net/",
+    "mongodb+srv://jeevavijay24:G2pHzDURnxUdS3ka@ims.valllfv.mongodb.net/?retryWrites=true&w=majority&appName=IMS",
   sessionSecret: "G2pHzDURnxUdS3ka",
 };
