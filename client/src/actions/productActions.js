@@ -9,7 +9,7 @@ import {
   UPDATED_PRODUCT,
   DELETE_PRODUCTS,
 } from "../actions/types";
-import { returnErrors } from "./errorActions";
+import { toastException, toastSuccess } from "../helpers";
 
 // Get products
 export const getProducts = () => async (dispatch) => {
@@ -17,12 +17,13 @@ export const getProducts = () => async (dispatch) => {
 
   try {
     const res = await axios.get("/api/products");
+
     dispatch({
       type: GET_PRODUCTS,
       payload: res.data,
     });
-  } catch (err) {
-    dispatch(returnErrors(err.response.data, err.response.status));
+  } catch (exception) {
+    toastException(exception);
   }
 };
 
@@ -30,12 +31,15 @@ export const getProducts = () => async (dispatch) => {
 export const addProduct = (newProduct) => async (dispatch) => {
   try {
     const res = await axios.post("/api/products/add", newProduct);
+
     dispatch({
       type: ADD_PRODUCT,
       payload: res.data,
     });
-  } catch (err) {
-    dispatch(returnErrors(err.response.data, err.response.status));
+
+    toastSuccess("Product created successfully");
+  } catch (exception) {
+    toastException(exception);
   }
 };
 
@@ -64,8 +68,10 @@ export const updateProduct = (updatedProduct) => async (dispatch) => {
       type: UPDATED_PRODUCT,
       payload: res.data,
     });
-  } catch (err) {
-    dispatch(returnErrors(err.response.data, err.response.status));
+
+    toastSuccess("Product updated successfully");
+  } catch (exception) {
+    toastException(exception);
   }
 };
 
@@ -78,7 +84,9 @@ export const deleteProduct = (id) => async (dispatch) => {
       type: DELETE_PRODUCTS,
       payload: res.data,
     });
-  } catch (err) {
-    dispatch(returnErrors(err.response.data, err.response.status));
+
+    toastSuccess("Product deleted successfully");
+  } catch (exception) {
+    toastException(exception);
   }
 };

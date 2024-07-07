@@ -1,6 +1,6 @@
 import axios from "axios";
-import { returnErrors } from "./errorActions";
 
+import { toast } from "react-toastify";
 import {
   USER_LOADING,
   USER_LOADED,
@@ -11,77 +11,84 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
 } from "./types";
+import { toastException, toastSuccess } from "../helpers";
 
 // Load User
-export const loadUser = () => (dispatch) => {
+export const loadUser = () => async (dispatch) => {
   dispatch({ type: USER_LOADING });
+  try {
+    const response = await axios.get("/api/users/user");
 
-  axios
-    .get("/api/users/user")
-    .then((res) =>
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data,
-      })
-    )
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR,
-      });
+    dispatch({
+      type: USER_LOADED,
+      payload: response.data,
     });
+  } catch (exception) {
+    toastException(exception);
+
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
 };
 
 // Login User
 export const login =
   ({ email, password }) =>
-  (dispatch) => {
-    axios
-      .post("/api/users/login", { email, password })
-      .then((res) => {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        dispatch(returnErrors(err.response.data, err.response.status));
-        dispatch({
-          type: LOGIN_FAIL,
-        });
+  async (dispatch) => {
+    try {
+      const response = await axios.post("/api/users/login", {
+        email,
+        password,
       });
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: response.data,
+      });
+    } catch (exception) {
+      toastException(exception);
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    }
   };
 
 // Logout User
-export const logout = () => (dispatch) => {
-  axios
-    .post("/api/users/logout")
-    .then(() =>
-      dispatch({
-        type: LOGOUT_SUCCESS,
-      })
-    )
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+export const logout = () => async (dispatch) => {
+  try {
+    await axios.post("/api/users/logout");
+
+    dispatch({
+      type: LOGOUT_SUCCESS,
     });
+
+    toastSuccess("Successfully logged out");
+  } catch (exception) {
+    toastException(exception);
+  }
 };
 
 // Register User
 export const register =
   ({ username, email, password }) =>
-  (dispatch) => {
-    axios
-      .post("/api/users/register", { username, email, password })
-      .then((res) =>
-        dispatch({
-          type: REGISTER_SUCCESS,
-          payload: res.data,
-        })
-      )
-      .catch((err) => {
-        dispatch(returnErrors(err.response.data, err.response.status));
-        dispatch({
-          type: REGISTER_FAIL,
-        });
+  async (dispatch) => {
+    try {
+      const response = await axios.post("/api/users/register", {
+        username,
+        email,
+        password,
       });
+
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: response.data,
+      });
+    } catch (exception) {
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+
+      toastException(exception);
+    }
   };
