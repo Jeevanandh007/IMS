@@ -1,4 +1,5 @@
 module.exports = {
-    mongoURL: process.env.ATLAS_URI || "mongodb+srv://jeevavijay24:G2pHzDURnxUdS3ka@ims.valllfv.mongodb.net/?retryWrites=true&w=majority&appName=IMSS",
-    
-  };
+  mongoURL:
+    "mongodb+srv://jeevanandh:%3DUpC%40%3B!33E2l@ims.tq2gleb.mongodb.net/",
+  sessionSecret: "G2pHzDURnxUdS3ka",
+};

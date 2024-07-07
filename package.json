@@ -4,7 +4,8 @@
   "description": "inventory management system",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "jeevanandh",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
     "mongoose": "^8.4.4",
+    "nodemon": "^3.1.4",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   }
