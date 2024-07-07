@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { Link, Redirect } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { register } from "../actions/authActions";
 
 const Register = () => {
@@ -9,17 +9,18 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(register({ username, email, password }));
+
+    history.push("/login");
   };
 
-  return auth.isAuthenticated ? (
-    <Redirect to={{ pathname: "/login" }} />
-  ) : (
+  return (
     <div className="container mt-5" style={{ maxWidth: "400px" }}>
       <h2 className="text-success">Sign Up</h2>
       <hr />
