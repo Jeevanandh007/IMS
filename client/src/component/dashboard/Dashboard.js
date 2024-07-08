@@ -47,7 +47,7 @@ const Dashboard = () => {
           </li>
         </ul>
         <div className="copyright">
-          &copy; 2024 Inventory Management App by Jeevanandh .
+          &copy; 2024 Inventory Management App by Jeevanandh
         </div>
       </div>
       <div className="main">
