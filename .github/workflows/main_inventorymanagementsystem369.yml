@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present
       
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: .
@@ -44,19 +44,19 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: node-app
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8D1A7D571B4F44B2AD823BB2F186B76D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_572A1CB2A1664575A445F7B00C8319F3 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0091339647DD41B5B94D6E66E1053017 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DC40C0994B114F05B3B361097F52FA75 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9439D7459B7541E09CAC58A1E97F252F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4CE1CCE382E34438A81260D893C99183 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'InventoryManagementSystem369'
